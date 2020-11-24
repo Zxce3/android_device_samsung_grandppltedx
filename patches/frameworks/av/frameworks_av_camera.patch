@@ -137,8 +137,8 @@ diff --git a/media/libstagefright/Android.mk b/media/libstagefright/Android.mk
 index e708f68..c755aaf 100644
 --- a/media/libstagefright/Android.mk
 +++ b/media/libstagefright/Android.mk
-@@ -165,6 +165,11 @@ ifeq ($(TARGET_OMX_LEGACY_RESCALING),true)
- LOCAL_CFLAGS += -DUSE_LEGACY_RESCALING
+@@ -165,6 +165,11 @@ ifeq ($(TARGET_HAS_LEGACY_HSR),true)
+ LOCAL_CFLAGS += -DLEGACY_HSR
  endif
  
 +ifeq ($(strip $(BOARD_USES_MTK_HARDWARE)),true)
