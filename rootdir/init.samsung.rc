@@ -615,33 +615,6 @@ service sec-sh /system/etc/init.sec.boot.sh
     user root
     oneshot
 
-# vold
-service vold /system/bin/vold \
-        --blkid_context=u:r:blkid:s0 --blkid_untrusted_context=u:r:blkid_untrusted:s0 \
-        --fsck_context=u:r:fsck:s0 --fsck_untrusted_context=u:r:fsck_untrusted:s0
-    class core
-    socket vold stream 0660 root mount
-    socket cryptd stream 0660 root mount
-    ioprio be 2
-## Frigatebird
-    socket frigate stream 0660 system system
-## Knox
-    socket epm stream 0660 system system
-    socket ppm stream 0660 system system
-## Samsung ODE >>>
-    socket dir_enc_report stream 0660 root mount
-## Samsung ODE <<<
-
-service drm /system/bin/drmserver
-    class main
-    user drm
-# [ SEC_MM_DRM
-# fix
-    group system drm inet drmrpc radio dpgp
-# org
-#    group drm system inet drmrpc
-# ]
-
 # Sensorhub service
 service sensorhubservice /system/bin/sensorhubservice
     class main

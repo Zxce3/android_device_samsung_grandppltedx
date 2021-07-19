@@ -1,0 +1,20 @@
+[
+  {
+    "target_path": "kernel/samsung/grandppltedx",
+    "repository":  "almondnguyen/android_kernel_samsung_grandppltedx",
+    "remote":      "github",
+    "revision":    "3.18.53-N"
+  },
+  {
+    "target_path": "vendor/samsung/grandppltedx",
+    "repository":  "almondnguyen/android_vendor_samsung_grandppltedx",
+    "remote":      "github",
+    "revision":    "android-7"
+  },
+  {
+    "target_path": "external/sony/boringssl-compat"
+    "repository":  "LineageOS/android_external_sony_boringssl-compat"
+    "remote":      "github"
+    "revision":    "cm-14.1"
+  }
+]

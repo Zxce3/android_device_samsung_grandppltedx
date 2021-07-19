@@ -1299,13 +1299,14 @@ service pppd_gprs /system/bin/pppd_dt /dev/ttyACM0 debug noauth refuse-eap usepe
 #    class main
 #    oneshot
 
-service agpsd /system/bin/mtk_agpsd
-    class main
-    socket agpsd stream 660 gps system
-    socket agpsd2 stream 660 gps inet
-    socket agpsd3 stream 660 gps inet
-    user gps
-    group gps radio inet sdcard_r sdcard_rw misc system
+#al: tempo disable
+#service agpsd /system/bin/mtk_agpsd
+#    class main
+#    socket agpsd stream 660 gps system
+#    socket agpsd2 stream 660 gps inet
+#    socket agpsd3 stream 660 gps inet
+#    user gps
+#    group gps radio inet sdcard_r sdcard_rw misc system
 
 service slpd /system/bin/slpd
     class main

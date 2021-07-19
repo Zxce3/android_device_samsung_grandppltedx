@@ -26,9 +26,7 @@ DEVICE_PATH := device/samsung/grandppltedx
 $(call inherit-product-if-exists, vendor/samsung/grandppltedx/grandppltedx-vendor.mk)
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += \
-	$(DEVICE_PATH)/overlay/n \
-	$(DEVICE_PATH)/overlay/tether
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 # Display
 #-- This device is hdpi.
@@ -87,6 +85,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	media.sf.omx-plugin=libffmpeg_omx.so,libsomxcore.so
+
+PRODUCT_PACKAGES += libffmpeg
 
 #-- BT
 PRODUCT_COPY_FILES += \
@@ -158,7 +158,8 @@ PRODUCT_PACKAGES += \
 	libshim_ssl \
 	libshim_camera \
 	libshim_agpsd \
-	libshim_xlog
+	libshim_xlog \
+	libboringssl-compat
 
 # Platform
 PRODUCT_PACKAGES += \
@@ -170,11 +171,8 @@ PRODUCT_PACKAGES += \
 	libperfservicenative
 
 PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
-	frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
 	frameworks/native/data/etc/android.hardware.faketouch.xml:system/etc/permissions/android.hardware.faketouch.xml \
 	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-	frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
 	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
 	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
@@ -186,7 +184,12 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
+	frameworks/native/data/etc/android.hardware.screen.landscape.xml:system/etc/permissions/android.hardware.screen.landscape.xml \
+	frameworks/native/data/etc/android.hardware.screen.portrait.xml:system/etc/permissions/android.hardware.screen.portrait.xml \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+
+# Doze
+PRODUCT_PACKAGES += SamsungDoze
 
 # Recovery - twrp
 PRODUCT_COPY_FILES += \
@@ -200,6 +203,7 @@ PRODUCT_PACKAGES += \
 	
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+	frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
 	$(DEVICE_PATH)/configs/gps/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
 	$(DEVICE_PATH)/configs/gps/slp_conf:system/etc/slp_conf	
 

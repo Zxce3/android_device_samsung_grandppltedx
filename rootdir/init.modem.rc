@@ -96,8 +96,8 @@ service terservice /system/bin/terservice
 #    start muxreport-daemon
 
 # May fix socket/rild1 not found?
-on property:persist.radio.multisim.config=dsds
-    stop ril-daemon
-    start ril-daemon
-    start ril-daemon2
+#on property:persist.radio.multisim.config=dsds
+#    stop ril-daemon
+#    start ril-daemon
+#    start ril-daemon2
 
