@@ -7,7 +7,12 @@ qemu.hw.mainkeys=0
 lineage.updater.uri=https://raw.githubusercontent.com/almondnguyen/android_OTA/main/grandppltedx.json
 cm.updater.uri=https://raw.githubusercontent.com/almondnguyen/android_OTA/main/grandppltedx.json
 
-# Platform
+## ADB Debugging
+persist.service.adb.enable=1
+persist.service.debuggable=1
+persist.sys.usb.config=mtp,adb
+
+## Platform
 ro.mediatek.chip_ver=S01
 ro.mediatek.platform=MT6737T
 ro.mediatek.version.branch=alps-mp-m1.mp8.tc10sp
@@ -48,7 +53,8 @@ dalvik.vm.heapminfree=512k
 dalvik.vm.heapmaxfree=8m
     
 ## Block
-ro.frp.pst=/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/PERSISTENT
+#- FRP in AOSP is useless tho
+#ro.frp.pst=/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/PERSISTENT
 
 ## display
 ro.sf.lcd_density=240

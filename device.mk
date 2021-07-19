@@ -296,14 +296,12 @@ PRODUCT_COPY_FILES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	rild.libpath=/system/lib/libsec-ril.so \
 	rild.libpath2=/system/lib/libsec-ril-dsds.so \
-	ro.zygote=zygote32 \
-	ro.mount.fs=EXT4 \
 	ro.adb.secure=0 \
 	ro.secure=0 \
-	ro.allow.mock.location=0 \
 	ro.debuggable=1 \
+	persist.service.adb.enable=1 \
+	persist.service.debuggable=1 \
 	persist.sys.dun.override=0 \
-	persist.service.acm.enable=0 \
 	persist.sys.usb.config=mtp,adb \
 	persist.sys.display.clearMotion=0
 	 

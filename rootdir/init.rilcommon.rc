@@ -10,6 +10,48 @@ import /init.rilcarrier.rc
 import /init.rilchip.rc
 import /init.rilepdg.rc
 
+############
+# APN hack #
+############
+#* this fixes the following error :
+#
+# E RILD    : db doesn't exist
+# E RILD    : IsAttachApnChanged: Failed to load attach apn
+# E RILD    : RefreshAttachApn: read Attach Apn from DB failed
+#
+# Thus fixing mobile data,
+#  prolly due to old sec-ril
+#
+
+on early-boot
+# Assign TCP buffer thresholds to be ceiling value of technology maximums
+# Increased technology maximums should be reflected here.
+    write /proc/sys/net/core/rmem_max 2097152
+    write /proc/sys/net/core/wmem_max 2097152
+
+on post-fs-data
+    # Remove symlinks to avoid issues with migrate after nandroid restores
+    # Will be recreated at end of boot
+    rmdir /data/data/com.android.providers.telephony/databases
+    rmdir /data/data/com.android.providers.telephony/shared_prefs
+    rm /data/data/com.android.providers.telephony/databases
+    rm /data/data/com.android.providers.telephony/shared_prefs
+
+on property:sys.boot_completed=1
+    # Symlink directories to access telephony.db and preferred-apn.xml required by cbd
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+    restorecon /data/data/com.android.providers.telephony/databases
+    restorecon /data/data/com.android.providers.telephony/shared_prefs
+
+    # restart RIL <--> modem stack to account for new locations
+    restart ccci_mdinit
+    restart ril-daemon
+
+################
+# End APN hack #
+################
+
 on boot
 
 # AT Distributor for factory test
