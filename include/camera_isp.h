@@ -639,6 +639,7 @@ typedef enum
 //
 typedef struct  {
     ISP_RTBC_STATE_ENUM state;
+    unsigned long dropCnt;
     ISP_RT_RING_BUF_INFO_STRUCT  ring_buf[_rt_dma_max_];
 }ISP_RT_BUF_STRUCT;
 //
@@ -702,7 +703,6 @@ typedef struct
     unsigned int            callerID;
     int                     p2burstQIdx;
     int                     p2dupCQIdx;
-    int                     frameNum;
     unsigned int            timeoutUs;
 }ISP_ED_BUFQUE_STRUCT;
 

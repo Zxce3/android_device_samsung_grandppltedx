@@ -1,8 +1,11 @@
 # MTK platform .rc configure
 
+# al: logging
+import init.logger.rc
+
 # samsung init forked out
-import /init.samsung.rc
-import /init.rilcommon.rc
+import init.samsung.rc
+import init.rilcommon.rc
 
 # normal
 import init.project.rc
@@ -18,9 +21,7 @@ import init.epdg.rc
 import init.common_svc.rc
 import init.emdlogger1.rc
 
-# init.modem.rc must be the LAST rc file because vold.post_fs_data_done is set in it
-import init.modem.rc
-# *** DO NOT import the new rc file after this line ***
+import init.mt6735.modem.rc
 
 on early-init
     chmod 0644 /proc/cmdline

@@ -47,9 +47,7 @@ PRODUCT_DEFAULT_REGION   := US
 #-- Audio
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
-	audio.usb.default \
 	audio.r_submix.default \
-	audio_policy.default \
 	libaudiopolicymanagerdefault \
 	libaudio-resampler \
 	libtinyalsa \
@@ -59,10 +57,6 @@ PRODUCT_PACKAGES += \
 	libfs_mgr
 
 PRODUCT_COPY_FILES += \
-	frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
-	frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
-	frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
-	frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
 	frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
@@ -125,10 +119,8 @@ PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/configs/carrier/spn-conf.xml:system/etc/spn-conf.xml \
 	$(DEVICE_PATH)/configs/carrier/old-apns-conf.xml:system/etc/old-apns-conf.xml \
 	$(DEVICE_PATH)/configs/carrier/nwk_info.xml:system/etc/nwk_info.xml
-#-- RIL
-#
-SIM_COUNT := 2
 
+#-- RIL
 PRODUCT_PACKAGES += \
 	libxml2 \
 	libprotobuf-cpp-full
@@ -152,14 +144,10 @@ PRODUCT_PACKAGES += \
 # shim / symbols
 PRODUCT_PACKAGES += \
 	liblog_mtk \
-	mtk_symbols \
-	libshim_thermal \
-	libshim_general \
-	libshim_ssl \
 	libshim_camera \
-	libshim_agpsd \
-	libshim_xlog \
 	libboringssl-compat
+
+TARGET_LD_PRELOAD += libboringssl-compat
 
 # Platform
 PRODUCT_PACKAGES += \
@@ -188,9 +176,6 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.screen.portrait.xml:system/etc/permissions/android.hardware.screen.portrait.xml \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-# Doze
-PRODUCT_PACKAGES += SamsungDoze
-
 # Recovery - twrp
 PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/configs/recovery.fstab:recovery/root/etc/twrp.fstab
@@ -209,14 +194,9 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-PRODUCT_COPY_FILES += \
-
-# Charger
-# Use cm/lineage images if available, aosp ones otherwise
+# Charger Mode
 PRODUCT_PACKAGES += \
-	charger_res_images \
-	cm_charger_res_images \
-	lineage_charger_res_images
+    charger_res_images
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -269,7 +249,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	enableswap.sh \
 	fstab.mt6735 \
-	init.modem.rc \
+	init.mt6735.modem.rc \
 	init.mt6735.rc \
 	init.mt6735.usb.rc \
 	init.project.rc \
@@ -285,9 +265,6 @@ PRODUCT_PACKAGES += \
 	ueventd.mt6735.rc \
 	init.xlog.rc \
 	log.sh
-
-
-#-- sbin
 
 PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/rootdir/sbin/sswap:root/sbin/sswap \

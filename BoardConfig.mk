@@ -41,6 +41,7 @@ USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+MAX_VIRTUAL_DISPLAY_DIMENSION := 1
 PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 0
 BOARD_EGL_CFG := $(DEVICE_PATH)/configs/egl.cfg
 MTK_HWC_SUPPORT := yes
@@ -61,12 +62,11 @@ TARGET_BOARD_PLATFORM := mt6737t
 TARGET_NO_FACTORYIMAGE := true
 TARGET_BOARD_PLATFORM_GPU := mali-T720mp2
 
-MTK_GPU_VERSION := mali midgard r18p0
+MTK_GPU_VERSION := mali midgard r7p0_v2
 BOARD_HAS_MTK_HARDWARE := true
 BOARD_USES_MTK_HARDWARE := true
 MTK_HARDWARE := true
 BOARD_USES_MTK_MEDIA_PROFILES := true
-
 TARGET_PROVIDES_LIBLIGHT := true
 
 PRODUCT_SHIPPING_API_LEVEL := 23
@@ -123,11 +123,9 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 BOARD_CUSTOM_BOOTIMG := true
 
 BOARD_KERNEL_IMAGE_NAME := zImage
-# al: Test mainline kernel
 TARGET_KERNEL_SOURCE    := kernel/samsung/grandppltedx
-#TARGET_KERNEL_SOURCE    := kernel/samsung/mainline-test
 TARGET_KERNEL_CONFIG    := mt6737t-grandpplte_defconfig
-TARGET_PREBUILT_DTB 	:= $(DEVICE_PATH)/dt.img
+TARGET_PREBUILT_DTB     := $(DEVICE_PATH)/dt.img
 
 BOARD_KERNEL_CMDLINE  := bootopt=64S3,32N2,32N2 androidboot.selinux=permissive
 BOARD_KERNEL_BASE     := 0x3fffc000
@@ -143,110 +141,24 @@ else
 BOARD_NAME            := SRPPI01A000KU
 endif
 
-BOARD_MKBOOTIMG_ARGS := --base $(BOARD_KERNEL_BASE) --pagesize $(BOARD_KERNEL_PAGESIZE) --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --second_offset $(BOARD_SECOND_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET) --board $(BOARD_NAME) --dt $(TARGET_PREBUILT_DTB)
+BOARD_MKBOOTIMG_ARGS := \
+	--base $(BOARD_KERNEL_BASE) \
+	--pagesize $(BOARD_KERNEL_PAGESIZE) \
+	--kernel_offset $(BOARD_KERNEL_OFFSET) \
+	--ramdisk_offset $(BOARD_RAMDISK_OFFSET) \
+	--second_offset $(BOARD_SECOND_OFFSET) \
+	--tags_offset $(BOARD_TAGS_OFFSET) \
+	--board $(BOARD_NAME) \
+	--dt $(TARGET_PREBUILT_DTB)
+
 # CMHW
 BOARD_USES_LINEAGE_HARDWARE := true
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw
 
 # Recovery
-#RECOVERY_VARIANT := twrp
 BOARD_HAS_NO_SELECT_BUTTON := true
-
-ifeq ($(RECOVERY_VARIANT),twrp) #build TWRP
-
-#-- common
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/configs/recovery.fstab
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
-TARGET_RECOVERY_LCD_BACKLIGHT_PATH := "/sys/devices/ktd3102-bl/lcd-backlight/brightness"
-BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-DEVICE_RESOLUTION := 540x960
-DEVICE_SCREEN_WIDTH := 540
-DEVICE_SCREEN_HEIGHT := 960
-
-TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
-MALLOC_SVELTE := true
-PROTOBUF_SUPPORTED := true
-
-#-- Encryption support
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FBE := true
-
-#--twrp
-TW_NO_REBOOT_BOOTLOADER := true
-TW_THEME := portrait_hdpi
-#TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone0/temp
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TW_MAX_BRIGHTNESS := 255
-TW_INCLUDE_CRYPTO := true
-TW_BRIGHTNESS_PATH := /sys/devices/ktd3102-bl/lcd-backlight/brightness
-TW_DEFAULT_BRIGHTNESS := 162
-TW_USE_TOOLBOX := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_INTERNAL_STORAGE_PATH := "/data/media"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_EXCLUDE_TWRPAPP := true
-
-#-- exFAT FS Support
-TW_INCLUDE_FUSE_EXFAT := true
-
-#-- NTFS Support
-TW_INCLUDE_FUSE_NTFS := true
-
-#--pbrp
-PB_DISABLE_DEFAULT_DM_VERITY := true
-PB_DISABLE_DEFAULT_TREBLE_COMP := true
-
-#--pbrp: add support for flashlight
-LINKER_FORCED_SHIM_LIBS := \
-	/system/lib/hw/camera.mt6735.so|libshim_camera.so:\
-	/system/lib/hw/camera.mt6735.so|mtk_symbols.so:\
-	/system/lib/libcam.camadapter.so|libshim_camera.so:\
-	/system/lib/libcam.client.so|mtk_symbols.so
-	
-else #build ROM
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.mt6735
-
-# Move symlinks here
-LINKER_FORCED_SHIM_LIBS := \
-	/system/lib/libdpframework.so|liblog_mtk.so:\
-	/system/lib/hw/audio.primary.mt6735.so|liblog_mtk.so:\
-	/system/lib/libMtkOmxAlacDec.so|liblog_mtk.so:\
-	/system/bin/mdlogger|liblog_mtk.so:\
-	/system/bin/mtk_agpsd|liblog_mtk.so:\
-	/system/bin/mobile_log_d|liblog_mtk.so:\
-	/system/bin/fsck_msdos_mtk|liblog_mtk.so:\
-	/system/bin/mmp|liblog_mtk.so:\
-	/system/xbin/mnld|liblog_mtk.so\
-	/system/lib/libcam_utils.so|libshim_camera.so:\
-	/system/bin/thermal|libshim_thermal.so:\
-	/system/bin/emdlogger1|liblog_mtk.so:\
-	/system/bin/xlog|liblog_mtk.so:\
-	/system/bin/xlog|libshim_xlog.so:\
-	/system/bin/mtk_agpsd|libshim_agpsd.so:\
-	/system/lib/libMtkOmxVenc.so|mtk_symbols.so:\
-	/system/lib/hw/camera.mt6735.so|libshim_camera.so:\
-	/system/lib/hw/camera.mt6735.so|mtk_symbols.so:\
-	/system/lib/libcam.camadapter.so|libshim_camera.so:\
-	/system/lib/libcam.client.so|mtk_symbols.so:\
-	/system/bin/mtk_agpsd|mtk_symbols.so:\
-	/system/lib/libaudio_param_parser.so|mtk_symbols.so
-
-# temporary. This'll be useful when buiding
-# libril + libsecril-client from source
-#
-#	:\
-#	/system/lib/hw/audio.primary.mt6735.so|libaudio-ril.so:\
-#	/system/lib/libril.so|libsecril-client.so:\
-#	/system/lib/libaudio-ril.so|libsecril-client.so:\
-#	/system/bin/at_distributor|libsecril-client.so:\
-	
-LD_PRELOADS += mtk_symbols.so
 
 # Audio
 USE_CUSTOM_AUDIO_POLICY := 1
@@ -303,13 +215,11 @@ WIFI_DRIVER_STATE_CTRL_PARAM := /dev/wmtWifi
 WIFI_DRIVER_STATE_ON := 1
 WIFI_DRIVER_STATE_OFF := 0
 
-endif #TWRP
-
 # system properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # SEAndroid
-include $(DEVICE_PATH)/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 BOARD_SECCOMP_POLICY += $(DEVICE_PATH)/seccomp
 
 # Misc

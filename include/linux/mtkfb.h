@@ -58,7 +58,6 @@
 #define MTKFB_FACTORY_AUTO_TEST                MTK_IOR(25, unsigned long)
 #define MTKFB_GET_FRAMEBUFFER_MVA              MTK_IOR(26, unsigned int)
 #define MTKFB_SLT_AUTO_CAPTURE                 MTK_IOWR(27, struct fb_slt_catpure)
-#define MTKFB_SET_AOD_POWER_MODE		MTK_IOW(28, unsigned int) /* 0:MTKFB_AOD_DOZE, 1:MTKFB_AOD_DOZE_SUSPEND */
 
 /* Wearable */
 #define MTKFB_LCM_ALWAYS_ON_ENABLE             MTK_IOW(80, unsigned int)
@@ -153,12 +152,6 @@ typedef struct _disp_dfo_item
 	int  value;
 } disp_dfo_item_t;
 
-enum mtkfb_aod_power_mode {
-	MTKFB_AOD_DOZE = 0,
-	MTKFB_AOD_DOZE_SUSPEND,
-	MTKFB_AOD_POWER_MODE_ERROR
-};
-
 // --------------------------------------------------------------------------
 struct fb_slt_catpure
 {
@@ -235,7 +228,7 @@ struct fb_overlay_decouple
 struct fb_overlay_buffer
 {
 	//	Input
-	unsigned int layer_id;
+	int layer_id;
 	unsigned int layer_en;
 	int ion_fd;
 	unsigned int cache_sync;

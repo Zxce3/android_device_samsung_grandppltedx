@@ -114,13 +114,16 @@ enum {
 #define FM_SEEK_UP          0
 #define FM_SEEK_DOWN        1
 
+#define FM_CHIP_AR1000 0x1000
+#define FM_CHIP_MT5192 0x91
+#define FM_CHIP_MT5193 0x92
+#define FM_CHIP_MT6616 0x6616
 #define FM_CHIP_MT6620 0x6620
+#define FM_CHIP_MT6626 0x6626
 #define FM_CHIP_MT6628 0x6628
 #define FM_CHIP_MT6627 0x6627
 #define FM_CHIP_MT6580 0x6580
 #define FM_CHIP_MT6630 0x6630
-#define FM_CHIP_MT6631 0x6631
-#define FM_CHIP_MT6632 0x6632
 
 #define FM_CHIP_UNSUPPORTED -1
 
@@ -580,7 +583,6 @@ typedef struct {
 
 #define FM_IOCTL_SOFT_MUTE_TUNE _IOWR(FM_IOC_MAGIC, 63, struct fm_softmute_tune_t*)/*for soft mute tune*/
 #define FM_IOCTL_DESENSE_CHECK   _IOWR(FM_IOC_MAGIC, 64, fm_desense_check_t*)
-#define FM_IOCTL_PMIC_RDWR  _IOWR(FM_IOC_MAGIC, 65, struct fm_pmic_rw_parm*)
 
 //IOCTL for EM
 #define FM_IOCTL_FULL_CQI_LOG _IOWR(FM_IOC_MAGIC, 70, fm_full_cqi_log_t *)

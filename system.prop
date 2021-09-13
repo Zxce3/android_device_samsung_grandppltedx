@@ -4,8 +4,7 @@
 config.disable_consumerir=true
 media.sf.omx-plugin=libffmpeg_omx.so,libsomxcore.so
 qemu.hw.mainkeys=0
-lineage.updater.uri=https://raw.githubusercontent.com/almondnguyen/android_OTA/main/grandppltedx.json
-cm.updater.uri=https://raw.githubusercontent.com/almondnguyen/android_OTA/main/grandppltedx.json
+cm.updater.uri=https://raw.githubusercontent.com/almondnguyen/android_OTA/main/cm13-grandppltedx.json
 
 ## ADB Debugging
 persist.service.adb.enable=1
@@ -25,7 +24,6 @@ rild.libpath2=/system/lib/libsec-ril-dsds.so
 rild.libargs=-d /dev/ttyC0
 
 ro.telephony.ril_class=grandpplteRIL
-ro.telephony.ril.socket_name=rild,rild2
 ro.ril.telephony.mqanelements=6
 
 ## Dalvik / hwui
@@ -65,11 +63,6 @@ ro.telephony.default_network=9
 ro.boot.opt_lte_support=1
 telephony.lteOnGsmDevice=1
 telephony.lteOnCdmaDevice=0
-
-## Samsung Specific Properties
-ro.build.PDA=G532GDXU1ASA5
-ro.build.hidden_ver=G532GDXU1ASA5
-ro.config.rm_preload_enabled=0
 ro.chipname=MT6737T
 
 ## copypasta build.prop

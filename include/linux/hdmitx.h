@@ -5,29 +5,7 @@
 
 
 #define HDMI_DEV_DRV "/dev/hdmitx"
-#define SINK_480P (1 << 0)
-#define SINK_720P60 (1 << 1)
-#define SINK_1080I60 (1 << 2)
-#define SINK_1080P60 (1 << 3)
-#define SINK_480P_1440 (1 << 4)
-#define SINK_480P_2880 (1 << 5)
-#define SINK_480I (1 << 6)
-#define SINK_480I_1440 (1 << 7)
-#define SINK_480I_2880 (1 << 8)
-#define SINK_1080P30 (1 << 9)
-#define SINK_576P (1 << 10)
-#define SINK_720P50 (1 << 11)
-#define SINK_1080I50 (1 << 12)
-#define SINK_1080P50 (1 << 13)
-#define SINK_576P_1440 (1 << 14)
-#define SINK_576P_2880 (1 << 15)
-#define SINK_576I (1 << 16)
-#define SINK_576I_1440 (1 << 17)
-#define SINK_576I_2880 (1 << 18)
-#define SINK_1080P25 (1 << 19)
-#define SINK_1080P24 (1 << 20)
-#define SINK_1080P23976 (1 << 21)
-#define SINK_1080P2997 (1 << 22)
+
 
 typedef enum
 {
@@ -78,11 +56,9 @@ typedef enum
 
 typedef enum
 {
-	HDMI_SCALE_ADJUSTMENT_SUPPORT = 0x01,
-	HDMI_ONE_RDMA_LIMITATION = 0x02,
-	HDMI_PHONE_GPIO_REUSAGE  = 0x04,
-	/*bit3-bit6: channal count; bit7-bit9: sample rate; bit10-bit11: bitwidth*/
-	HDMI_FACTORY_MODE_NEW	 = 0x1000,
+    HDMI_SCALE_ADJUSTMENT_SUPPORT = 0x01,
+    HDMI_ONE_RDMA_LIMITATION = 0x02,
+	HDMI_PHONE_GPIO_REUSAGE       = 0x04,
 } HDMI_CAPABILITY;
 
 typedef enum
@@ -375,7 +351,7 @@ typedef struct
 #define MTK_MHL_GET_DCAP                        HDMI_IOWR(90, unsigned int)
 #define MTK_MHL_GET_3DINFO                      HDMI_IOWR(91, unsigned int)
 #define MTK_HDMI_HDCP                           HDMI_IOWR(92, unsigned int)
-
+#define MTK_HDMI_AUDIO_FORMAT                   HDMI_IOWR(93, unsigned int)
 
 #define MTK_HDMI_FACTORY_CHIP_INIT              HDMI_IOWR(94, int)
 #define MTK_HDMI_FACTORY_JUDGE_CALLBACK         HDMI_IOWR(95, int)

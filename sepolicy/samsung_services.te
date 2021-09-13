@@ -1,0 +1,46 @@
+#AL
+# ==============================================
+# Type Declaration
+# ==============================================
+
+# BCS-daemon
+type connfwexe_exec , exec_type, file_type;
+type connfwexe , domain;
+
+# DR-daemon
+type ddexe_exec , exec_type, file_type;
+type ddexe , domain;
+
+# SMD-daemon
+type smdexe_exec , exec_type, file_type;
+type smdexe , domain;
+
+# at_distributor
+type at_distributor_exec , exec_type, file_type;
+type at_distributor , domain;
+
+# macloader
+type macloader_exec , exec_type, file_type;
+type macloader , domain;
+
+# stp_dump
+type stp_dump_exec , exec_type, file_type;
+type stp_dump , domain;
+
+# ==============================================
+# Policy Rule
+# ==============================================
+
+permissive macloader;
+permissive ddexe;
+permissive smdexe;
+permissive connfwexe;
+permissive at_distributor;
+permissive stp_dump;
+init_daemon_domain(stp_dump);
+init_daemon_domain(at_distributor);
+init_daemon_domain(connfwexe);
+init_daemon_domain(smdexe);
+init_daemon_domain(ddexe);
+init_daemon_domain(macloader);
+

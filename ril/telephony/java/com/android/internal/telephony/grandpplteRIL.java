@@ -410,7 +410,7 @@ public class grandpplteRIL extends RIL implements CommandsInterface {
     // uses SlteRIL because stock one is waaayyy too lengthy and unusable
     // tons of bugs incoming (.......)
     @Override
-    protected void processUnsolicited(Parcel p, int type) {
+    protected void processUnsolicited(Parcel p) {
         Object ret;
 
         int dataPosition = p.dataPosition();
@@ -451,7 +451,7 @@ public class grandpplteRIL extends RIL implements CommandsInterface {
                 p.setDataPosition(dataPosition);
 
                 // Forward responses that we are not overriding to the super class
-                super.processUnsolicited(p, type);
+                super.processUnsolicited(p);
                 return;
         }
 	

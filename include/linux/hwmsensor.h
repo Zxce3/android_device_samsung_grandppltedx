@@ -25,60 +25,59 @@
 
 #include <linux/ioctl.h>
 
-/* follow mtk add sensor type */
-#define SENSOR_TYPE_PEDOMETER           (55 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
+#define SENSOR_TYPE_ACCELEROMETER       1
+#define SENSOR_TYPE_MAGNETIC_FIELD      2
+#define SENSOR_TYPE_ORIENTATION         3
+#define SENSOR_TYPE_GYROSCOPE           4
+#define SENSOR_TYPE_LIGHT               5
+#define SENSOR_TYPE_PRESSURE            6
+#define SENSOR_TYPE_TEMPERATURE         7
+#define SENSOR_TYPE_PROXIMITY           8
+#define SENSOR_TYPE_GRAVITY             9
+#define SENSOR_TYPE_LINEAR_ACCELERATION 10
+#define SENSOR_TYPE_ROTATION_VECTOR     11
+#define SENSOR_TYPE_HUMIDITY            12
+#define SENSOR_TYPE_GAME_ROTATION_VECTOR 15
+#define SENSOR_TYPE_SIGNIFICANT_MOTION  17
+#define SENSOR_TYPE_STEP_DETECTOR       18
+#define SENSOR_TYPE_STEP_COUNTER        19
+
+#define SENSOR_TYPE_GEOMAGNETIC_ROTATION_VECTOR     20
+
+#define SENSOR_TYPE_HEART_RATE          21
+#define SENSOR_TYPE_TILT_DETECTOR       22
+#define SENSOR_TYPE_WAKE_GESTURE        23
+#define SENSOR_TYPE_GLANCE_GESTURE      24
+#define SENSOR_TYPE_PICK_UP_GESTURE     25
+
+#define SENSOR_TYPE_PEDOMETER           (26)
 #define SENSOR_STRING_TYPE_PEDOMETER                 "android.sensor.pedometer"
-#define SENSOR_TYPE_IN_POCKET           (56 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
+#define SENSOR_TYPE_IN_POCKET           (27)
 #define SENSOR_STRING_TYPE_IN_POCKET                 "android.sensor.in_pocket"
-#define SENSOR_TYPE_ACTIVITY            (57 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
+#define SENSOR_TYPE_ACTIVITY            (28)
 #define SENSOR_STRING_TYPE_ACTIVITY                  "android.sensor.activity"
-#define SENSOR_TYPE_PDR				(58 + SENSOR_TYPE_DEVICE_PRIVATE_BASE) /*Add kernel driver*/
-#define SENSOR_STRING_TYPE_PDR                  "android.sensor.pdr"
-#define SENSOR_TYPE_FREEFALL			(59 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_FREEFALL                "android.sensor.freefall"
-#define SENSOR_TYPE_FLAT				(60 + SENSOR_TYPE_DEVICE_PRIVATE_BASE) /*Add kernel driver*/
-#define SENSOR_STRING_TYPE_FLAT    					"android.sensor.flat"
-#define SENSOR_TYPE_FACE_DOWN           (61 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
+#define SENSOR_TYPE_FACE_DOWN           (29)
 #define SENSOR_STRING_TYPE_FACE_DOWN                 "android.sensor.face_down"
-#define SENSOR_TYPE_SHAKE               (62 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
+#define SENSOR_TYPE_SHAKE               (30)
 #define SENSOR_STRING_TYPE_SHAKE                     "android.sensor.shake"
-#define SENSOR_TYPE_BRINGTOSEE          (63 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
+#define SENSOR_TYPE_BRINGTOSEE          (31)
 #define SENSOR_STRING_TYPE_BRINGTOSEE               "android.sensor.bring_to_see"
-#define SENSOR_TYPE_ANSWER_CALL         (64 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_ANSWERCALL               "android.sensor.answer_call"
-#define SENSOR_TYPE_GEOFENCE            (65 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_TYPE_FLOOR_COUNTER		(66 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_FLOOR_COUNTER             "android.sensor.floor_count"
-#define SENSOR_TYPE_EKG          		(67 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_EKG                      "android.sensor.ekg"
-#define SENSOR_TYPE_PPG1          		(68 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_PPG1                     "android.sensor.ppg1"
-#define SENSOR_TYPE_PPG2          		(69 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_PPG2                     "android.sensor.ppg2"
-#define SENSOR_TYPE_RGBW          		(70 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_RGBW                     "android.sensor.rgbw"
-#define SENSOR_TYPE_GYRO_TEMPERATURE          	(71 + SENSOR_TYPE_DEVICE_PRIVATE_BASE)
-#define SENSOR_STRING_TYPE_GYRO_TEMPERATURE         "android.sensor.gyro_temperature"
-/* end sensor type */
+
 /*---------------------------------------------------------------------------*/
 #define ID_BASE							0
-/* follow google default sensor ID */
-#define ID_ACCELEROMETER				(ID_BASE+SENSOR_TYPE_ACCELEROMETER-1)
-#define ID_MAGNETIC						(ID_BASE+SENSOR_TYPE_MAGNETIC_FIELD-1)
 #define ID_ORIENTATION					(ID_BASE+SENSOR_TYPE_ORIENTATION-1)
+#define ID_MAGNETIC						(ID_BASE+SENSOR_TYPE_MAGNETIC_FIELD-1)
+#define ID_ACCELEROMETER				(ID_BASE+SENSOR_TYPE_ACCELEROMETER-1)
+#define ID_LINEAR_ACCELERATION			(ID_BASE+SENSOR_TYPE_LINEAR_ACCELERATION-1)
+#define ID_ROTATION_VECTOR				(ID_BASE+SENSOR_TYPE_ROTATION_VECTOR-1)
+#define ID_GAME_ROTATION_VECTOR   (ID_BASE+SENSOR_TYPE_GAME_ROTATION_VECTOR-1)
+#define ID_GRAVITY						(ID_BASE+SENSOR_TYPE_GRAVITY-1)
 #define ID_GYROSCOPE					(ID_BASE+SENSOR_TYPE_GYROSCOPE-1)
+#define ID_PROXIMITY					(ID_BASE+SENSOR_TYPE_PROXIMITY-1)
 #define ID_LIGHT						(ID_BASE+SENSOR_TYPE_LIGHT-1)
 #define ID_PRESSURE						(ID_BASE+SENSOR_TYPE_PRESSURE-1)
 #define ID_TEMPRERATURE					(ID_BASE+SENSOR_TYPE_TEMPERATURE-1)
-#define ID_PROXIMITY					(ID_BASE+SENSOR_TYPE_PROXIMITY-1)
-#define ID_GRAVITY						(ID_BASE+SENSOR_TYPE_GRAVITY-1)
-#define ID_LINEAR_ACCELERATION			(ID_BASE+SENSOR_TYPE_LINEAR_ACCELERATION-1)
-#define ID_ROTATION_VECTOR				(ID_BASE+SENSOR_TYPE_ROTATION_VECTOR-1)
-#define ID_RELATIVE_HUMIDITY			(ID_BASE+SENSOR_TYPE_RELATIVE_HUMIDITY-1)
-#define ID_AMBIENT_TEMPERATURE			(ID_BASE+SENSOR_TYPE_AMBIENT_TEMPERATURE-1)
-#define ID_MAGNETIC_UNCALIBRATED		(ID_BASE+SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED-1)
-#define ID_GAME_ROTATION_VECTOR			(ID_BASE+SENSOR_TYPE_GAME_ROTATION_VECTOR-1)
-#define ID_GYROSCOPE_UNCALIBRATED		(ID_BASE+SENSOR_TYPE_GYROSCOPE_UNCALIBRATED-1)
+#define ID_HUMIDITY                     (ID_BASE+SENSOR_TYPE_HUMIDITY-1)
 #define ID_SIGNIFICANT_MOTION			(ID_BASE+SENSOR_TYPE_SIGNIFICANT_MOTION-1)  
 #define ID_STEP_DETECTOR				(ID_BASE+SENSOR_TYPE_STEP_DETECTOR-1)  
 #define ID_STEP_COUNTER					(ID_BASE+SENSOR_TYPE_STEP_COUNTER-1) 
@@ -88,43 +87,50 @@
 #define ID_WAKE_GESTURE         (ID_BASE+SENSOR_TYPE_WAKE_GESTURE-1)
 #define ID_GLANCE_GESTURE       (ID_BASE+SENSOR_TYPE_GLANCE_GESTURE-1)
 #define ID_PICK_UP_GESTURE      (ID_BASE+SENSOR_TYPE_PICK_UP_GESTURE-1)
-#define ID_WRIST_TITL_GESTURE      (ID_BASE+SENSOR_TYPE_WRIST_TILT_GESTURE-1)
-#define ID_DEVICE_ORIENTATION      (ID_BASE + SENSOR_TYPE_DEVICE_ORIENTATION - 1)
-#define ID_POSE_6DOF               (ID_BASE + SENSOR_TYPE_POSE_6DOF - 1)
-#define ID_STATIONARY_DETECT       (ID_BASE + SENSOR_TYPE_STATIONARY_DETECT - 1)
-#define ID_MOTION_DETECT           (ID_BASE + SENSOR_TYPE_MOTION_DETECT - 1)
-#define ID_HEART_BEAT              (ID_BASE + SENSOR_TYPE_HEART_BEAT - 1)
-#define ID_DYNAMIC_SENSOR_META     (ID_BASE + SENSOR_TYPE_DYNAMIC_SENSOR_META - 1)
-#define ID_ADDITIONAL_INFO         (ID_BASE + SENSOR_TYPE_ADDITIONAL_INFO - 1)
-#define ID_LOW_LATENCY_OFFBODY_DETECT	(ID_BASE + SENSOR_TYPE_LOW_LATENCY_OFFBODY_DETECT - 1)
-#define ID_ACCELEROMETER_UNCALIBRATED	(ID_BASE + SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED - 1)
-
-/* MTK Sensor Type*/
-#define ID_PEDOMETER                                    (ID_BASE+SENSOR_TYPE_PEDOMETER-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_IN_POCKET                    (ID_BASE+SENSOR_TYPE_IN_POCKET-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_ACTIVITY                     (ID_BASE+SENSOR_TYPE_ACTIVITY-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_PDR							(ID_BASE+SENSOR_TYPE_PDR-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_FREEFALL						(ID_BASE+SENSOR_TYPE_FREEFALL-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_FLAT							(ID_BASE+SENSOR_TYPE_FLAT-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_FACE_DOWN                                    (ID_BASE+SENSOR_TYPE_FACE_DOWN-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_SHAKE                                        (ID_BASE+SENSOR_TYPE_SHAKE-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_BRINGTOSEE                                   (ID_BASE+SENSOR_TYPE_BRINGTOSEE-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_ANSWER_CALL                                   (ID_BASE+SENSOR_TYPE_ANSWER_CALL-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_GEOFENCE                                     (ID_BASE+SENSOR_TYPE_GEOFENCE-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_RGBW						(ID_BASE+SENSOR_TYPE_RGBW-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_FLOOR_COUNTER                     (ID_BASE + SENSOR_TYPE_FLOOR_COUNTER-SENSOR_TYPE_DEVICE_PRIVATE_BASE - 1)
-#define ID_EKG                                          (ID_BASE+SENSOR_TYPE_EKG-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_PPG1                                         (ID_BASE+SENSOR_TYPE_PPG1-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_PPG2                                         (ID_BASE+SENSOR_TYPE_PPG2-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_RGBW						(ID_BASE+SENSOR_TYPE_RGBW-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_GYRO_TEMPERATURE				(ID_BASE+SENSOR_TYPE_GYRO_TEMPERATURE-SENSOR_TYPE_DEVICE_PRIVATE_BASE-1)
-#define ID_SENSOR_MAX_HANDLE	  (ID_BASE+ID_GYRO_TEMPERATURE+1)
+#define ID_PEDOMETER                                    (ID_BASE+SENSOR_TYPE_PEDOMETER-1)
+#define ID_ACTIVITY                                     (ID_BASE+SENSOR_TYPE_ACTIVITY-1)
+#define ID_IN_POCKET                                     (ID_BASE+SENSOR_TYPE_IN_POCKET-1)
+#define ID_FACE_DOWN                                    (ID_BASE+SENSOR_TYPE_FACE_DOWN-1)
+#define ID_SHAKE                                        (ID_BASE+SENSOR_TYPE_SHAKE-1)
+#define ID_BRINGTOSEE                                   (ID_BASE+SENSOR_TYPE_BRINGTOSEE-1)
+#define ID_SENSOR_MAX_HANDLE	  (ID_BASE+SENSOR_TYPE_BRINGTOSEE)
 #define ID_NONE							    (ID_SENSOR_MAX_HANDLE+1)
 
 #define ID_OFFSET                           (1)
 
 #define MAX_ANDROID_SENSOR_NUM	(ID_SENSOR_MAX_HANDLE +1)
 #define MAX_SENSOR_DATA_UPDATE_ONCE         (20)
+
+/*---------------------------------------------------------------------------*/
+#define SENSOR_ORIENTATION				(1 << ID_ORIENTATION)
+#define SENSOR_MAGNETIC					(1 << ID_MAGNETIC)
+#define SENSOR_ACCELEROMETER			(1 << ID_ACCELEROMETER)
+#define SENSOR_GYROSCOPE				(1 << ID_GYROSCOPE)
+#define SENSOR_PROXIMITY				(1 << ID_PROXIMITY)
+#define SENSOR_LIGHT					(1 << ID_LIGHT)
+#define SENSOR_PRESSURE					(1 << ID_PRESSURE)
+#define SENSOR_TEMPRERATURE				(1 << ID_TEMPRERATURE)
+#define SENSOR_GRAVITY					(1 << ID_GRAVITY)
+#define SENSOR_LINEAR_ACCELERATION		(1 << ID_LINEAR_ACCELERATION)
+#define SENSOR_ROTATION_VECTOR			(1 << ID_ROTATION_VECTOR)
+
+#define SENSOR_SIGNIFICANT_MOTION           (1 << ID_SIGNIFICANT_MOTION)
+#define SENSOR_STEP_DETECTOR                (1 << ID_STEP_DETECTOR)
+#define SENSOR_STEP_COUNTER                 (1 << ID_STEP_COUNTER)
+#define SENSOR_GEOMAGNETIC_ROTATION_VECTOR  (1 << ID_GEOMAGNETIC_ROTATION_VECTOR)
+
+#define SENSOR_HEART_RATE           (1 << ID_HEART_RATE)
+#define SENSOR_TILT_DETECTOR        (1 << ID_TILT_DETECTOR)
+#define SENSOR_WAKE_GESTURE         (1 << ID_WAKE_GESTURE)
+#define SENSOR_GLANCE_GESTURE       (1 << ID_GLANCE_GESTURE)
+#define SENSOR_PICK_UP_GESTURE      (1 << ID_PICK_UP_GESTURE)
+
+#define SENSOR_PEDOMETER                    (1 << ID_PEDOMETER) 
+#define SENSOR_IN_POCKET                    (1 << ID_IN_POCKET) 
+#define SENSOR_ACTIVITY                     (1 << ID_ACTIVITY) 
+#define SENSOR_FACE_DOWN                    (1 << ID_FACE_DOWN) 
+#define SENSOR_SHAKE                        (1 << ID_SHAKE) 
+#define SENSOR_BRINGTOSEE                   (1 << ID_BRINGTOSEE) 
 
 /*----------------------------------------------------------------------------*/
 #define HWM_INPUTDEV_NAME               "hwmdata"
@@ -144,15 +150,9 @@
 #define ALSPS_PL_DEV_NAME                	"m_alsps_pl"
 #define ALSPS_INPUTDEV_NAME              "m_alsps_input"
 #define ALSPS_MISC_DEV_NAME              "m_alsps_misc"
-#define RGBW_PL_DEV_NAME                "m_rgbw_pl"
-#define RGBW_INPUTDEV_NAME              "m_rgbw_input"
-#define RGBW_MISC_DEV_NAME              "m_rgbw_misc"
 #define BARO_PL_DEV_NAME                	"m_baro_pl"
 #define BARO_INPUTDEV_NAME              "m_baro_input"
 #define BARO_MISC_DEV_NAME              "m_baro_misc"
-#define BIO_PL_DEV_NAME                 "m_bio_pl"
-#define BIO_INPUTDEV_NAME               "m_bio_input"
-#define BIO_MISC_DEV_NAME               "m_bio_misc"
 
 #define STEP_C_PL_DEV_NAME                "m_step_c_pl"
 #define STEP_C_INPUTDEV_NAME              "m_step_c_input"
@@ -198,10 +198,6 @@
 #define GLG_INPUTDEV_NAME              "m_glg_input"
 #define GLG_MISC_DEV_NAME              "m_glg_misc"
 
-#define ANSWERCALL_PL_DEV_NAME          "m_ancall_pl"
-#define ANSWERCALL_INPUTDEV_NAME        "m_ancall_input"
-#define ANSWERCALL_MISC_DEV_NAME        "m_ancall_misc"
-
 #define TEMP_PL_DEV_NAME                	"m_temp_pl"
 #define TEMP_INPUTDEV_NAME              	"m_temp_input"
 #define TEMP_MISC_DEV_NAME              	"m_temp_misc"
@@ -234,15 +230,6 @@
 #define RV_INPUTDEV_NAME             	"m_rv_input"
 #define RV_MISC_DEV_NAME             	"m_rv_misc"
 
-#define GES_PL_DEV_NAME               	"m_ges_pl"
-#define GES_INPUTDEV_NAME             	"m_ges_input"
-#define GES_MISC_DEV_NAME             	"m_ges_misc"
-
-#define GYRO_TEMPERATURE_PL_DEV_NAME                "m_gyro_temperature_pl"
-#define GYRO_TEMPERATURE_INPUTDEV_NAME              "m_gyro_temperature_input"
-#define GYRO_TEMPERATURE_MISC_DEV_NAME              "m_gyro_temperature_misc"
-
-
 #define EVENT_TYPE_SENSOR				0x01
 #define EVENT_TYPE_SENSOR_EXT			0x02
 #define EVENT_SENSOR_ACCELERATION		SENSOR_ACCELEROMETER
@@ -268,10 +255,7 @@ typedef struct {
 	/* sensor identifier */
 	int 	sensor;
 	/* sensor values */
-	union {
-		int values[6];
-		uint8_t probability[12];
-	};
+	int	values[6];
 	/* sensor values divide */
 	uint32_t value_divide;
 	/* sensor accuracy*/

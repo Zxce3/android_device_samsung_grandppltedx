@@ -4,7 +4,6 @@
 #include <linux/ioctl.h>
 #define FDVT_IOC_MAGIC    'N'
 
-#define SIG_ERESTARTSYS 512
 
 typedef struct 
 {

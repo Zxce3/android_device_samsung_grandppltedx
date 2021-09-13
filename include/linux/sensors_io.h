@@ -36,22 +36,6 @@ typedef struct{
 	int z;
 }SENSOR_DATA;
 
-struct biometric_cali {
-    unsigned int pga6;
-    unsigned int ambdac5_5;
-};
-
-struct biometric_test_data {
-    int ppg_ir;
-    int ppg_r;
-    int ekg;
-};
-
-struct biometric_threshold {
-    int ppg_ir_threshold;
-    int ppg_r_threshold;
-    int ekg_threshold;
-};
 
 #define GSENSOR						   	0x85
 #define GSENSOR_IOCTL_INIT                  _IO(GSENSOR,  0x01)
@@ -63,7 +47,6 @@ struct biometric_threshold {
 #define GSENSOR_IOCTL_SET_CALI				_IOW(GSENSOR, 0x06, SENSOR_DATA)
 #define GSENSOR_IOCTL_GET_CALI				_IOW(GSENSOR, 0x07, SENSOR_DATA)
 #define GSENSOR_IOCTL_CLR_CALI				_IO(GSENSOR, 0x08)
-#define GSENSOR_IOCTL_ENABLE_CALI			_IO(GSENSOR, 0x09)
 
 
 
@@ -151,8 +134,6 @@ struct biometric_threshold {
 #define AAL_SET_ALS_MODE				_IOW(ALSPS, 0x14,int)
 #define AAL_GET_ALS_MODE				_IOR(ALSPS, 0x15,int)
 #define AAL_GET_ALS_DATA				_IOR(ALSPS, 0x16,int)
-#define ALSPS_ALS_ENABLE_CALI			_IO(ALSPS, 0x17)
-#define ALSPS_PS_ENABLE_CALI			_IO(ALSPS, 0x18)
 
 #define GYROSCOPE							0X86
 #define GYROSCOPE_IOCTL_INIT					_IO(GYROSCOPE, 0x01)
@@ -164,14 +145,12 @@ struct biometric_threshold {
 #define GYROSCOPE_IOCTL_READ_SENSORDATA_RAW	_IOR(GYROSCOPE, 0x07, int)
 #define GYROSCOPE_IOCTL_READ_TEMPERATURE	_IOR(GYROSCOPE, 0x08, int)
 #define GYROSCOPE_IOCTL_GET_POWER_STATUS	_IOR(GYROSCOPE, 0x09, int)
-#define GYROSCOPE_IOCTL_ENABLE_CALI			_IO(GYROSCOPE, 0x10)
 
 #define BROMETER							0X87
 #define BAROMETER_IOCTL_INIT				_IO(BROMETER, 0x01)
 #define BAROMETER_GET_PRESS_DATA			_IOR(BROMETER, 0x02, int)
 #define BAROMETER_GET_TEMP_DATA			    _IOR(BROMETER, 0x03, int)
 #define BAROMETER_IOCTL_READ_CHIPINFO		_IOR(BROMETER, 0x04, int)
-#define BAROMETER_IOCTL_ENABLE_CALI			_IO(BROMETER, 0x05)
 
 #define HEARTMONITOR                        0x88
 #define HRM_IOCTL_INIT                      _IO(HEARTMONITOR, 0x01)
@@ -182,17 +161,6 @@ struct biometric_threshold {
 #define HUMIDITY_GET_HMDY_DATA			_IOR(HUMIDITY, 0x02, int)
 #define HUMIDITY_GET_TEMP_DATA			    _IOR(HUMIDITY, 0x03, int)
 #define HUMIDITY_IOCTL_READ_CHIPINFO		_IOR(HUMIDITY, 0x04, int)
-
-#define BIOMETRIC							0X90
-#define BIOMETRIC_IOCTL_INIT					_IO(BIOMETRIC, 0x01)
-#define BIOMETRIC_IOCTL_DO_CALI				_IOW(BIOMETRIC, 0x02, struct biometric_cali)
-#define BIOMETRIC_IOCTL_SET_CALI				_IOW(BIOMETRIC, 0x03, struct biometric_cali)
-#define BIOMETRIC_IOCTL_GET_CALI				_IOW(BIOMETRIC, 0x04, struct biometric_cali)
-#define BIOMETRIC_IOCTL_CLR_CALI				_IO(BIOMETRIC, 0x05)
-#define BIOMETRIC_IOCTL_FTM_START				_IO(BIOMETRIC, 0x06)
-#define BIOMETRIC_IOCTL_FTM_END				_IO(BIOMETRIC, 0x07)
-#define BIOMETRIC_IOCTL_FTM_GET_DATA			_IOW(BIOMETRIC, 0x08, struct biometric_test_data)
-#define BIOMETRIC_IOCTL_FTM_GET_THRESHOLD		_IOW(BIOMETRIC, 0x09, struct biometric_threshold)
 
 #endif
 

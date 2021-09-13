@@ -234,27 +234,11 @@ typedef struct cmdqSecAddrMetadataStruct {
 	/* [IN]_d, index of instruction. Update its argB value to real PA/MVA in secure world */
 	uint32_t instrIndex;
 
-	/*
-	 * Note: Buffer and offset
-	 *
-	 *   -------------
-	 *   |     |     |
-	 *   -------------
-	 *   ^     ^  ^  ^
-	 *   A     B  C  D
-	 *
-	 *	A: baseHandle
-	 *	B: baseHandle + blockOffset
-	 *  C: baseHandle + blockOffset + offset
-	 *	A~B or B~D: size
-	 */
-
-	uint32_t type;		/* [IN] addr handle type*/
-	uint64_t baseHandle;	/* [IN]_h, secure address handle */
-	uint32_t blockOffset;	/* [IN]_b, block offset from handle(PA) to current block(plane) */
+	CMDQ_SEC_ADDR_METADATA_TYPE type;	/* [IN] addr handle type */
+	uint32_t baseHandle;	/* [IN]_h, secure address handle */
 	uint32_t offset;	/* [IN]_b, buffser offset to secure handle */
 	uint32_t size;		/* buffer size */
-	uint32_t port;		/* hw port id (i.e. M4U port id)*/
+	uint32_t port;		/* hw port id (i.e. M4U port id) */
 } cmdqSecAddrMetadataStruct;
 
 typedef struct cmdqSecDataStruct {
@@ -308,8 +292,6 @@ typedef struct cmdqCommandStruct {
 #ifdef CMDQ_PROFILE_MARKER_SUPPORT
 	cmdqProfileMarkerStruct profileMarker;
 #endif
-	cmdqU32Ptr_t userDebugStr;
-	uint32_t userDebugStrLen;
 } cmdqCommandStruct;
 
 typedef enum CMDQ_CAP_BITS {

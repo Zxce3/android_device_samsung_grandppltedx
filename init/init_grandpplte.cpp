@@ -81,8 +81,11 @@ void init_single() {
 }
 
 void vendor_load_properties() {
-	std::string bootloader = property_get("ro.bootloader");
-	std::string platform;
+	char platform[PROP_VALUE_MAX];
+	char bootloader[PROP_VALUE_MAX];
+
+	property_get("ro.bootloader",bootloader);
+
 	int sim_count;
 
 	/* set basic device name */
@@ -94,7 +97,7 @@ void vendor_load_properties() {
 	}
 	
 	/* set model + dual sim props */
-	if (bootloader.find("G532F") != std::string::npos) {
+	if (strstr(bootloader, "G532F")) {
 		/* G532F */
 		property_override("ro.build.fingerprint", "samsung/grandpplteser/grandpplte:6.0.1/MMB29T/G532FXWU1ASB1:user/release-keys");
 	        property_override("ro.build.description", "grandpplteser-user 6.0.1 MMB29T G532FXWU1ASB1 release-keys");
@@ -108,7 +111,7 @@ void vendor_load_properties() {
 		}
 	}
 
-	if (bootloader.find("G532G") != std::string::npos) {
+	if (strstr(bootloader, "G532G")) {
 		/* G532G */
 		/* SEA is grandppltedx; SWA is grandpplteins*/
 		/* no major differences actually, so just name it -dx*/
@@ -124,7 +127,7 @@ void vendor_load_properties() {
 		}
 	}
 
-	if (bootloader.find("G532M") != std::string::npos) {
+	if (strstr(bootloader, "G532M")) {
 		/* G532M */
 		property_override("ro.build.fingerprint", "samsung/grandpplteub/grandpplte:6.0.1/MMB29T/G532MUMU1ASA1:user/release-keys");
 		property_override("ro.build.description", "grandpplteub-user 6.0.1 MMB29T G532MUMU1ASA1 release-keys");
@@ -138,7 +141,7 @@ void vendor_load_properties() {
 		}
 	}
 
-	if (bootloader.find("G532MT") != std::string::npos) {
+	if (strstr(bootloader, "G532MT")) {
 		/* G532MT */
 		property_override("ro.build.fingerprint", "samsung/grandppltedtvvj/grandpplte:6.0.1/MMB29T/G532MTVJU1ASA1:user/release-keys");
 		property_override("ro.build.description", "grandppltedtvvj-user 6.0.1 MMB29T G532MTVJU1ASA1 release-keys");

@@ -64,7 +64,7 @@ typedef struct
 #define GLOBAL_SAT_SIZE 10
 #define CONTRAST_SIZE 10
 #define BRIGHTNESS_SIZE 10
-#define PARTIAL_Y_SIZE 16
+#define PARTIAL_Y_SIZE 28
 #define PQ_HUE_ADJ_PHASE_CNT 4
 #define PQ_SAT_ADJ_PHASE_CNT 4
 #define PQ_PARTIALS_CONTROL 5
@@ -73,13 +73,6 @@ typedef struct
 #define GRASS_TONE_SIZE 6 //(-2)
 #define SKY_TONE_SIZE 3
 #define CCORR_COEF_CNT 4 /* ccorr feature */
-
-enum TONE_ENUM {
-    PURP_TONE = 0,
-    SKIN_TONE = 1,
-    GRASS_TONE = 2,
-    SKY_TONE = 3
-};
 
 typedef struct {
     unsigned int u4SHPGain;    // 0 : min , 9 : max.
@@ -123,36 +116,22 @@ typedef struct {
 } MDP_TDSHP_REG;
 
 typedef struct{
-    unsigned int GLOBAL_SAT  [GLOBAL_SAT_SIZE];
-    unsigned int CONTRAST    [CONTRAST_SIZE];
-    unsigned int BRIGHTNESS  [BRIGHTNESS_SIZE];
-    unsigned int PARTIAL_Y    [PARTIAL_Y_INDEX][PARTIAL_Y_SIZE];
-    unsigned int PURP_TONE_S  [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][PURP_TONE_SIZE];
-    unsigned int SKIN_TONE_S  [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][SKIN_TONE_SIZE];
-    unsigned int GRASS_TONE_S [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][GRASS_TONE_SIZE];
-    unsigned int SKY_TONE_S   [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][SKY_TONE_SIZE];
-    unsigned int PURP_TONE_H  [COLOR_TUNING_INDEX][PURP_TONE_SIZE];
-    unsigned int SKIN_TONE_H  [COLOR_TUNING_INDEX][SKIN_TONE_SIZE];
-    unsigned int GRASS_TONE_H [COLOR_TUNING_INDEX][GRASS_TONE_SIZE];
-    unsigned int SKY_TONE_H   [COLOR_TUNING_INDEX][SKY_TONE_SIZE];
-    unsigned int CCORR_COEF   [CCORR_COEF_CNT][3][3];
+
+    unsigned short GLOBAL_SAT  [GLOBAL_SAT_SIZE];
+    unsigned short CONTRAST    [CONTRAST_SIZE];
+    unsigned short BRIGHTNESS  [BRIGHTNESS_SIZE];
+    unsigned char PARTIAL_Y    [PARTIAL_Y_INDEX][PARTIAL_Y_SIZE];
+    unsigned char PURP_TONE_S  [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][PURP_TONE_SIZE];
+    unsigned char SKIN_TONE_S  [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][SKIN_TONE_SIZE];
+    unsigned char GRASS_TONE_S [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][GRASS_TONE_SIZE];
+    unsigned char SKY_TONE_S   [COLOR_TUNING_INDEX][PQ_PARTIALS_CONTROL][SKY_TONE_SIZE];
+    unsigned char PURP_TONE_H  [COLOR_TUNING_INDEX][PURP_TONE_SIZE];
+    unsigned char SKIN_TONE_H  [COLOR_TUNING_INDEX][SKIN_TONE_SIZE];
+    unsigned char GRASS_TONE_H [COLOR_TUNING_INDEX][GRASS_TONE_SIZE];
+    unsigned char SKY_TONE_H   [COLOR_TUNING_INDEX][SKY_TONE_SIZE];
+    unsigned int  CCORR_COEF   [CCORR_COEF_CNT][3][3];
 
 } DISPLAY_PQ_T;
-
-typedef struct {
-    unsigned int GLOBAL_SAT  ;
-    unsigned int CONTRAST    ;
-    unsigned int BRIGHTNESS  ;
-    unsigned int PARTIAL_Y    [PARTIAL_Y_SIZE];
-    unsigned int PURP_TONE_S  [PQ_PARTIALS_CONTROL][PURP_TONE_SIZE];
-    unsigned int SKIN_TONE_S  [PQ_PARTIALS_CONTROL][SKIN_TONE_SIZE];
-    unsigned int GRASS_TONE_S [PQ_PARTIALS_CONTROL][GRASS_TONE_SIZE];
-    unsigned int SKY_TONE_S   [PQ_PARTIALS_CONTROL][SKY_TONE_SIZE];
-    unsigned int PURP_TONE_H  [PURP_TONE_SIZE];
-    unsigned int SKIN_TONE_H  [SKIN_TONE_SIZE];
-    unsigned int GRASS_TONE_H [GRASS_TONE_SIZE];
-    unsigned int SKY_TONE_H   [SKY_TONE_SIZE];
-} DISPLAY_COLOR_REG_T;
 
 typedef struct{
 
@@ -194,6 +173,54 @@ typedef struct {
 
 } DISP_PQ_DS_PARAM;
 
+typedef enum {
+    BlackEffectEnable = 0,
+    WhiteEffectEnable,
+    StrongBlackEffect,
+    StrongWhiteEffect,
+    AdaptiveBlackEffect,
+    AdaptiveWhiteEffect,
+    ScenceChangeOnceEn,
+    ScenceChangeControlEn,
+    ScenceChangeControl,
+    ScenceChangeTh1,
+    ScenceChangeTh2,
+    ScenceChangeTh3,
+    ContentSmooth1,
+    ContentSmooth2,
+    ContentSmooth3,
+    MiddleRegionGain1,
+    MiddleRegionGain2,
+    BlackRegionGain1,
+    BlackRegionGain2,
+    BlackRegionRange,
+    BlackEffectLevel,
+    BlackEffectParam1,
+    BlackEffectParam2,
+    BlackEffectParam3,
+    BlackEffectParam4,
+    WhiteRegionGain1,
+    WhiteRegionGain2,
+    WhiteRegionRange,
+    WhiteEffectLevel,
+    WhiteEffectParam1,
+    WhiteEffectParam2,
+    WhiteEffectParam3,
+    WhiteEffectParam4,
+    ContrastAdjust1,
+    ContrastAdjust2,
+    DCChangeSpeedLevel,
+    ProtectRegionEffect,
+    DCChangeSpeedLevel2,
+    ProtectRegionWeight,
+    DCEnable
+} PQ_DC_index_t;
+
+typedef struct {
+
+    int param[40];
+
+} DISP_PQ_DC_PARAM;
 
 
 // OD
@@ -256,11 +283,6 @@ typedef enum
 #define DISP_IOCTL_SET_GAMMALUT    _IOW    (DISP_IOCTL_MAGIC, 23 , DISP_GAMMA_LUT_T)
 #define DISP_IOCTL_SET_CCORR       _IOW    (DISP_IOCTL_MAGIC, 24 , DISP_CCORR_COEF_T)
 
-/* Add for PQ transition control */
-/* 0 : disable CCORR event, 1 : enable CCORR event */
-#define DISP_IOCTL_CCORR_EVENTCTL    _IOW(DISP_IOCTL_MAGIC, 110, int)
-/* Get CCORR interrupt */
-#define DISP_IOCTL_CCORR_GET_IRQ    _IOR(DISP_IOCTL_MAGIC, 111, int)
 
 //Add for AAL control - E
 /*-----------------------------------------------------------------------------
@@ -296,7 +318,6 @@ typedef enum
 #define DISP_IOCTL_PQ_SET_DC_PARAM  _IOW    (DISP_IOCTL_MAGIC, 76, DISP_PQ_DC_PARAM)
 #define DISP_IOCTL_WRITE_SW_REG     _IOW    (DISP_IOCTL_MAGIC, 77, DISP_WRITE_REG)   // also defined in atci_pq_cmd.h
 #define DISP_IOCTL_READ_SW_REG      _IOWR   (DISP_IOCTL_MAGIC, 78, DISP_READ_REG)    // also defined in atci_pq_cmd.h
-#define DISP_IOCTL_SET_COLOR_REG    _IOWR   (DISP_IOCTL_MAGIC, 79, DISPLAY_COLOR_REG_T)
 
 // OD
 #define DISP_IOCTL_OD_CTL           _IOWR    (DISP_IOCTL_MAGIC, 80 , DISP_OD_CMD)
