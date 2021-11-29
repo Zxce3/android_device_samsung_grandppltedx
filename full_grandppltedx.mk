@@ -18,8 +18,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/samsung/grandppltedx/device.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := full_grandppltedx
+PRODUCT_NAME := lineage_grandppltedx
 PRODUCT_DEVICE := grandppltedx
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := G532G
+PRODUCT_MODEL := SM-G532G
