@@ -1,15 +1,13 @@
 # MTK platform .rc configure
 
+# add Samsung stuff in init.rc
+import init.samsung.rc
+
 import init.project.rc
 import /FWUpgradeInit.rc
 import init.xlog.rc
-import init.aee.rc
-import init.fon.rc
-import init.volte.rc
-import init.mal.rc
-import init.wfca.rc
 import init.rilepdg.rc
-#import init.trustonic.rc
+import init.rilchip.rc
 import init.common_svc.rc
 import init.emdlogger1.rc
 import /init.rilcommon.rc

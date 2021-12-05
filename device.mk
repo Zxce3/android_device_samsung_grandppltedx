@@ -188,10 +188,22 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mtk_omx_core.cfg:system/etc/mtk_omx_core.cfg \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# Rootdir
 
-# Build proprietary bits when available
-#ifneq ($(MTKPATH),)
-#$(call inherit-product-if-exists, $(MTKPATH)/config/mt6735.mk)
-#endif
-
-# nope. im here
+PRODUCT_PACKAGES += \
+	fstab.mt6735 \
+	init.modem.rc \
+	init.mt6735.rc \
+	init.mt6735.usb.rc \
+	init.project.rc \
+	init.recovery.mt6735.rc \
+	init.rilchip.rc \
+	init.rilepdg.rc \
+	init.rilcommon.rc \
+	init.usb.configfs.rc \
+	init.volte.rc \
+	init.wifi.rc \
+	ueventd.mt6735.rc \
+	init.emdlogger1.rc \
+	init.xlog.rc \
+	init.samsung.rc
