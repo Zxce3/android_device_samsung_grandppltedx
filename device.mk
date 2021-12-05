@@ -45,7 +45,7 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/grandppltedx/overlay
 #endif
 
 #PRODUCT_COPY_FILES += \
-#    $(LOCAL_KERNEL):kernel
+#	$(LOCAL_KERNEL):kernel
 
 $(call inherit-product, build/target/product/full.mk)
 
@@ -63,20 +63,20 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml
+	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+	frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+	frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml
 
 # Root
 PRODUCT_PACKAGES += \
@@ -95,22 +95,22 @@ PRODUCT_PACKAGES += \
 	init.rilepdg.rc \
 	init.wifi.rc \
 	ueventd.mt6735.rc   
-    
+	
 # Audio
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio.r_submix.default \
-    libaudiopolicymanagerdefault \
-    libtinyalsa \
-    libtinycompress \
-    libtinymix \
-    libtinyxml \
-    libfs_mgr
+	audio.a2dp.default \
+	audio.r_submix.default \
+	libaudiopolicymanagerdefault \
+	libtinyalsa \
+	libtinycompress \
+	libtinymix \
+	libtinyxml \
+	libfs_mgr
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_device.xml:system/etc/audio_device.xml \
-    $(LOCAL_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+	$(LOCAL_PATH)/configs/audio_device.xml:system/etc/audio_device.xml \
+	$(LOCAL_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
+	$(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -119,74 +119,74 @@ PRODUCT_COPY_FILES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    libion
+	libion
 
 # FM
 PRODUCT_PACKAGES += \
-    libfmjni \
-    FMRadio 
+	libfmjni \
+	FMRadio 
 
 # GPS
 PRODUCT_PACKAGES += \
-    libcurl 
+	libcurl 
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
-    $(LOCAL_PATH)/configs/clatd.conf:system/etc/clatd.conf 
-#    
+	$(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
+	$(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
+	$(LOCAL_PATH)/configs/clatd.conf:system/etc/clatd.conf 
+#	
 # Power
 PRODUCT_PACKAGES += \
-    power.default \
-    power.mt6735
+	power.default \
+	power.mt6735
 
 # Radio dependencies
 PRODUCT_PACKAGES += \
-    muxreport \
-    terservice
+	muxreport \
+	terservice
 
 # Wifi
 PRODUCT_PACKAGES += \
-    libwpa_client \
-    hostapd \
-    dhcpcd.conf \
-    wpa_supplicant \
+	libwpa_client \
+	hostapd \
+	dhcpcd.conf \
+	wpa_supplicant \
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+	$(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+	$(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+	$(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 # Charger Mode
 PRODUCT_PACKAGES += \
-    charger_res_images
+	charger_res_images
 
 ifneq ($(TARGET_BUILD_VARIANT), user)
 # Mediatek logging service
 PRODUCT_PACKAGES += \
-    MTKLogger \
-    emdlogger1 \
-    mdlogger \
-    mobile_log_d \
-    netdiag \
-    tcpdump
+	MTKLogger \
+	emdlogger1 \
+	mdlogger \
+	mobile_log_d \
+	netdiag \
+	tcpdump
 endif
 
 # Key Layouts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayouts/ACCDET.kl:system/usr/keylayout/ACCDET.kl \
-    $(LOCAL_PATH)/keylayouts/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
+	$(LOCAL_PATH)/keylayouts/ACCDET.kl:system/usr/keylayout/ACCDET.kl \
+	$(LOCAL_PATH)/keylayouts/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
 
 # Media
 PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media_codecs_mediatek_audio.xml:system/etc/media_codecs_mediatek_audio.xml \
-    $(LOCAL_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
-    $(LOCAL_PATH)/configs/mtk_omx_core.cfg:system/etc/mtk_omx_core.cfg \
-    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
+	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/configs/media_codecs_mediatek_audio.xml:system/etc/media_codecs_mediatek_audio.xml \
+	$(LOCAL_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
+	$(LOCAL_PATH)/configs/mtk_omx_core.cfg:system/etc/mtk_omx_core.cfg \
+	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Rootdir
 
