@@ -77,24 +77,6 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml
-
-# Root
-PRODUCT_PACKAGES += \
-	fstab.mt6735 \
-	factory_init.project.rc \
-	factory_init.rc \
-	init.modem.rc \
-	init.mt6735.rc \
-	init.mt6735.usb.rc \
-	meta_init.moden.rc \
-	meta_init.project.rc \
-	meta_init.rc \
-	init.project.rc \
-	init.rilcommon.rc \
-	init.rilchip.rc \
-	init.rilepdg.rc \
-	init.wifi.rc \
-	ueventd.mt6735.rc   
 	
 # Audio
 PRODUCT_PACKAGES += \
@@ -150,7 +132,7 @@ PRODUCT_PACKAGES += \
 	libwpa_client \
 	hostapd \
 	dhcpcd.conf \
-	wpa_supplicant \
+	wpa_supplicant
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -189,7 +171,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Rootdir
-
 PRODUCT_PACKAGES += \
 	fstab.mt6735 \
 	init.modem.rc \
