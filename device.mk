@@ -14,48 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-
-# this file is extracted from multiple sources
-
-# sub's device_grandpptledx.mk
-
-# This device is hdpi.
+# Display
+#-- This device is hdpi.
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
-#PRODUCT_LOCALES += hdpis
+PRODUCT_AAPT_PREBUILT_DPI := hdpi
+TARGET_SCREEN_HEIGHT := 960
+TARGET_SCREEN_WIDTH := 540
 
 
 # auto-created during mkvendor.sh
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
-
+$(call inherit-product, build/target/product/core.mk)
 $(call inherit-product-if-exists, vendor/samsung/grandppltedx/grandppltedx-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/grandppltedx/overlay
-
-#local path
-#LOCAL_PATH :=
-#ifeq ($(TARGET_PREBUILT_KERNEL),)
-#	LOCAL_KERNEL := device/samsung/grandppltedx/kernel
-#else
-#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-#endif
-
-#PRODUCT_COPY_FILES += \
-#	$(LOCAL_KERNEL):kernel
-
-$(call inherit-product, build/target/product/full.mk)
-
-PRODUCT_NAME := full_grandppltedx
-PRODUCT_DEVICE := grandppltedx
-
-
-#ifeq ($(TARGET_CYANOGEN_COMMON),mt6735)
-#include $(call all-makefiles-under,$(LOCAL_PATH))
-#endif
 
 
 # Overlay
