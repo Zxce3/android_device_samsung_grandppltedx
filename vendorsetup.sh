@@ -24,7 +24,7 @@ echo ""
 echo "# Reminder: curl also moved --no-proxy option to --noproxy."
 echo "            You need to run this in the root of AOSP"
 echo ""
-echo "~/android/cm13 $ device/samsung/grandppltedx/install.sh"
+echo "~/android/cm13 $ device/samsung/grandppltedx/patches/install.sh"
 echo ""
 
 # REMINDER: to remove these if you feel repetitive
