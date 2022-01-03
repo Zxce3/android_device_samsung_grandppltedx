@@ -1,8 +1,7 @@
 # add samsung stuff in init.rc here
 # so i can use stock init.rc
 
-on init
-
+on init     
     ffu
 
     # Create cgroup mount point for memory

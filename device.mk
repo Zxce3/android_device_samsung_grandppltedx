@@ -117,17 +117,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	charger_res_images
 
-ifneq ($(TARGET_BUILD_VARIANT), user)
-# Mediatek logging service
-PRODUCT_PACKAGES += \
-	MTKLogger \
-	emdlogger1 \
-	mdlogger \
-	mobile_log_d \
-	netdiag \
-	tcpdump
-endif
-
 # Key Layouts
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/keylayouts/ACCDET.kl:system/usr/keylayout/ACCDET.kl \
@@ -143,6 +132,12 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
 	$(LOCAL_PATH)/configs/mtk_omx_core.cfg:system/etc/mtk_omx_core.cfg \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+# Shims
+PRODUCT_PACKAGES += \
+	libshim_thermal \
+	libshim_camera \
+	liblog_mtk
 
 # Rootdir
 PRODUCT_PACKAGES += \
@@ -163,6 +158,7 @@ PRODUCT_PACKAGES += \
 	init.xlog.rc \
 	init.samsung.rc
 
+# Default.prop
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	rild.libpath=/system/lib/libsec-ril.so \
 	rild.libpath2=/system/lib/libsec-ril-dsds.so \
@@ -173,4 +169,5 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	persist.service.debuggable=1 \
 	persist.sys.dun.override=0 \
 	persist.sys.usb.config=mtp,adb \
+	sys.usb.config=mtp,adb \
 	persist.sys.display.clearMotion=0
