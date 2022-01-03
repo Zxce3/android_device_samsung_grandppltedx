@@ -13,14 +13,7 @@ ro.hwui.text_small_cache_width=512
 ro.hwui.text_small_cache_height=512
 ro.hwui.text_large_cache_width=1024
 ro.hwui.text_large_cache_height=1024
-#
-# from device/samsung/grandpplte/system.prop
-#
-#
-# system.prop for generic sdk
-#
 
-#rild.libpath=mtk-ril.so
 rild.libargs=-d /dev/ttyC0
 
 

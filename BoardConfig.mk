@@ -50,6 +50,7 @@ BOARD_HAS_MTK_HARDWARE := true
 BOARD_USES_MTK_HARDWARE := true
 MTK_HARDWARE := true
 BOARD_USES_MTK_MEDIA_PROFILES := true
+BOARD_USES_MTK_AUDIO := true
 
 PRODUCT_SHIPPING_API_LEVEL := 23
 
@@ -114,13 +115,19 @@ BOARD_MKBOOTIMG_ARGS := \
 TARGET_POWERHAL_VARIANT := mtk
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(DEVICE_PATH)/power/power.c
 
+# Charger (borrow from herolte)
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
+
 # Display
 USE_OPENGL_RENDERER := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 0
-BOARD_EGL_CFG := $(VENDOR_PATH)/proprietary/lib/egl/egl.cfg
+BOARD_EGL_CFG := device/samsung/grandppltedx/configs/egl.cfg
 MTK_HWC_SUPPORT := yes
 MTK_HWC_VERSION := 1.4.1
 
@@ -152,9 +159,16 @@ WIFI_DRIVER_STATE_CTRL_PARAM := /dev/wmtWifi
 WIFI_DRIVER_STATE_ON := 1
 WIFI_DRIVER_STATE_OFF := 0
 
+# Move symlinks here
+LINKER_FORCED_SHIM_LIBS += /system/lib/libdpframework.so|liblog_mtk.so:/system/lib/hw/audio.primary.mt6737t.so|liblog_mtk.so:/system/lib/libMtkOmxAlacDec.so|liblog_mtk.so:/system/bin/mdlogger|liblog_mtk.so:/system/bin/mtk_agpsd|liblog_mtk.so:/system/bin/mobile_log_d|liblog_mtk.so:/system/bin/fsck_msdos_mtk|liblog_mtk.so:/system/bin/mmp|liblog_mtk.so:/system/xbin/mnld|liblog_mtk.so:/system/lib/libMtkOmxVenc.so|liblog_mtk.so:/system/bin/xlog|liblog_mtk.so:/system/lib/hw/camera.mt6737t.so|libshim_camera.so:/system/lib/libcam.camadapter.so|libshim_camera.so:/system/lib/libcam_utils.so|libshim_camera.so:/system/bin/thermal|libshim_thermal.so
+
 # SEAndroid
 BOARD_SEPOLICY_DIRS := \
 	device/samsung/grandppltedx/sepolicy/
 
 # Misc
 EXTENDED_FONT_FOOTPRINT := true
+TARGET_CPU_MEMCPY_OPT_DISABLE := true
+
+# Platform
+#TARGET_INIT_VENDOR_LIB := libinit_grandpplte
