@@ -31,6 +31,9 @@ echo "If you have done those, please remove these reminders in"
 echo "> device/samsung/grandppltedx/vendorsetup.sh,"
 echo
 
+# Return to normal log
+echo "grandpplte> end reminder"
+
 # combo
 add_lunch_combo lineage_grandppltedx-userdebug
 add_lunch_combo lineage_grandppltedx-eng
