@@ -1,3 +1,6 @@
+# hack init.rc
+ro.hardware=mt6735
+
 #
 # HWUI_BUILD_PROPERTIES
 #

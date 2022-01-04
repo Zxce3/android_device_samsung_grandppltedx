@@ -75,7 +75,8 @@ PRODUCT_COPY_FILES += \
 
 # Display
 PRODUCT_PACKAGES += \
-	libion
+	libion \
+	libdpframework
 
 # FM
 PRODUCT_PACKAGES += \
