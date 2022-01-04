@@ -1,0 +1,21 @@
+diff --git a/libc/bionic/libc_init_common.cpp b/libc/bionic/libc_init_common.cpp
+index ecde8d4..be553e7 100644
+--- a/libc/bionic/libc_init_common.cpp
++++ b/libc/bionic/libc_init_common.cpp
+@@ -250,7 +250,6 @@ static bool __is_unsafe_environment_variable(const char* name) {
+       "LD_ORIGIN_PATH",
+       "LD_PRELOAD",
+       "LD_PROFILE",
+-      "LD_SHIM_LIBS",
+       "LD_SHOW_AUXV",
+       "LD_USE_LOAD_BIAS",
+       "LOCALDOMAIN",
+@@ -266,6 +265,8 @@ static bool __is_unsafe_environment_variable(const char* name) {
+       "TZDIR",
+       nullptr
+   };
++      // UNSANITIZE LD_SHIM_LIBS: "LD_SHIM_LIBS",
++
+   for (size_t i = 0; UNSAFE_VARIABLE_NAMES[i] != nullptr; ++i) {
+     if (env_match(name, UNSAFE_VARIABLE_NAMES[i]) != nullptr) {
+       return true;

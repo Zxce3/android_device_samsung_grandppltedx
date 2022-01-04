@@ -4,21 +4,17 @@
 import init.samsung.rc
 
 import init.project.rc
-import /FWUpgradeInit.rc
 import init.xlog.rc
-import init.rilepdg.rc
-import init.rilchip.rc
 import init.common_svc.rc
 import init.emdlogger1.rc
 import /init.rilcommon.rc
 
-# init.modem.rc must be the LAST rc file because vold.post_fs_data_done is set in it
 import init.modem.rc
-# *** DO NOT import the new rc file after this line ***
 
 on early-init
-    export LD_SHIM_LIBS "/system/lib/libdpframework.so|liblog_mtk.so"
-
+    # shim
+    export LD_SHIM_LIBS "/system/lib/libdpframework.so|liblog_mtk.so:/system/lib/hw/audio.primary.mt6737t.so|liblog_mtk.so:/system/lib/libMtkOmxAlacDec.so|liblog_mtk.so:/system/bin/mdlogger|liblog_mtk.so:/system/bin/mtk_agpsd|liblog_mtk.so:/system/bin/mobile_log_d|liblog_mtk.so:/system/bin/fsck_msdos_mtk|liblog_mtk.so:/system/bin/mmp|liblog_mtk.so:/system/xbin/mnld|liblog_mtk.so:/system/lib/libMtkOmxVenc.so|liblog_mtk.so:/system/bin/xlog|liblog_mtk.so:/system/lib/hw/camera.mt6737t.so|libshim_camera.so:/system/lib/libcam.camadapter.so|libshim_camera.so:/system/lib/libcam_utils.so|libshim_camera.so:/system/bin/thermal|libshim_thermal.so"
+    
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
     chown system system /sys/kernel/debug

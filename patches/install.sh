@@ -2,8 +2,7 @@ echo $1
 rootdirectory="$PWD"
 # ---------------------------------
 
-dirs="prebuilts/sdk"
-#dirs="prebuilts/sdk build/target/product"
+dirs="prebuilts/sdk bionic/libc/bionic"
 
 for dir in $dirs ; do
 	cd $rootdirectory

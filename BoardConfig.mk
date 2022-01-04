@@ -160,7 +160,7 @@ WIFI_DRIVER_STATE_ON := 1
 WIFI_DRIVER_STATE_OFF := 0
 
 # Move symlinks here
-LINKER_FORCED_SHIM_LIBS += /system/lib/libdpframework.so|liblog_mtk.so:/system/lib/hw/audio.primary.mt6737t.so|liblog_mtk.so:/system/lib/libMtkOmxAlacDec.so|liblog_mtk.so:/system/bin/mdlogger|liblog_mtk.so:/system/bin/mtk_agpsd|liblog_mtk.so:/system/bin/mobile_log_d|liblog_mtk.so:/system/bin/fsck_msdos_mtk|liblog_mtk.so:/system/bin/mmp|liblog_mtk.so:/system/xbin/mnld|liblog_mtk.so:/system/lib/libMtkOmxVenc.so|liblog_mtk.so:/system/bin/xlog|liblog_mtk.so:/system/lib/hw/camera.mt6737t.so|libshim_camera.so:/system/lib/libcam.camadapter.so|libshim_camera.so:/system/lib/libcam_utils.so|libshim_camera.so:/system/bin/thermal|libshim_thermal.so
+TARGET_LDPRELOAD += liblog_mtk.so
 
 # SEAndroid
 BOARD_SEPOLICY_DIRS := \
